@@ -1,1 +1,9 @@
-# IOT-4th-mission
+this code is to collect data about the environment, such as the number of people in the room, the noise level, and the temperature. This data can then be used to control a robot in a party.
+The code uses a DHT22 sensor to measure the temperature and humidity in the environment. It also uses a proximity sensor to count the number of people in the room. The noise level is calculated by averaging the readings from the DHT22 sensor over a period of time.
+The #include <DHT.h> line includes the DHT library, which provides the functionality for reading the temperature and humidity from a DHT sensor.
+The #define DHT_TYPE DHT22 and #define DHT_PIN 15 lines define the sensor type and pin. In this case, the DHT sensor is connected to pin 15 on the Arduino.
+The DHT dht(DHT_PIN, DHT_TYPE); line creates a DHT object. The DHT object is used to read the temperature and humidity from the sensor.
+The int get_number_of_people() { function counts the number of times the sensor detects a person. The function first declares a variable to store the number of people. Then, it loops 10 times and checks if the sensor detects a person. If the sensor detects a person, the function increments the number of people variable. The function then returns the number of people variable.
+The int get_noise_level() { function reads the noise level from the sensor. The function first calls the dht.readNoise() function to get the noise level from the sensor. Then, the function returns the noise level.
+The float get_temperature() { function reads the temperature from the sensor. The function first calls the dht.readTemperature() function to get the temperature from the sensor. Then, the function returns the temperature.
+The void loop() { function is the main loop of the program. The function first calls the get_number_of_people() function to get the number of people in the room. Then, the function calls the get_noise_level() function to get the noise level in the room. Then, the function calls the get_temperature() function to get the temperature in the room. Then, the function prints the data to the serial port. Finally, the function delays for 1 second.
