@@ -1,0 +1,57 @@
+#include <DHT.h>
+
+// Define the sensor type and pin
+#define DHT_TYPE DHT22
+#define DHT_PIN 15
+
+// Initialize the sensor
+DHT dht(DHT_PIN, DHT_TYPE);
+
+// Function to get the number of people in the room
+int get_number_of_people() {
+  // Count the number of times the sensor detects a person
+  int count = 0;
+  for (int i = 0; i < 10; i++) {
+    if (digitalRead(DHT_PIN) == HIGH) {
+      count += 1;
+    }
+  }
+  return count;
+}
+
+// Function to get the noise level
+int get_noise_level() {
+  // Read the noise level from the sensor
+  int noise_level = dht.readNoise();
+  return noise_level;
+}
+
+// Function to get the temperature
+float get_temperature() {
+  // Read the temperature from the sensor
+  float temperature = dht.readTemperature();
+  return temperature;
+}
+
+// Main loop
+void loop() {
+  // Get the number of people in the room
+  int number_of_people = get_number_of_people();
+
+  // Get the noise level
+  int noise_level = get_noise_level();
+
+  // Get the temperature
+  float temperature = get_temperature();
+
+  // Print the data
+  Serial.print("Number of people: ");
+  Serial.println(number_of_people);
+  Serial.print("Noise level: ");
+  Serial.println(noise_level);
+  Serial.print("Temperature: ");
+  Serial.println(temperature);
+
+  // Sleep for 1 second
+  delay(1000);
+}
